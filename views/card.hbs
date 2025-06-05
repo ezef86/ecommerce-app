@@ -1,0 +1,17 @@
+{{!-- Expects 'product' object and 'index' (0-based) as context --}}
+<div class="card h-100 shadow-sm product-card" data-product-id="{{product._id}}" data-product-name="{{product.name}}" data-product-price="{{product.price}}" data-product-image="{{product.imageUrl}}">
+    <img src="{{#if product.imageUrl}}{{product.imageUrl}}{{else}}/assets/images/placeholder-book.png{{/if}}" class="card-img-top product-image" alt="{{product.name}}">
+    <div class="card-body d-flex flex-column">
+        <h5 class="card-title">{{productTitle product.name index}}</h5>
+        <p class="card-text flex-grow-1">{{product.description}}</p>
+        <p class="card-text"><strong>Price:</strong> ${{product.price}}</p>
+        <p class="card-text"><small class="text-muted">Stock: {{product.stock}}</small></p>
+    </div>
+    <div class="card-footer bg-transparent border-top-0">
+        <button class="btn btn-primary w-100 add-to-cart-btn" 
+                {{#if (eq product.stock 0)}}disabled{{/if}}>
+            <i class="bi bi-cart-plus"></i> 
+            {{#if (eq product.stock 0)}}Out of Stock{{else}}Add to Cart{{/if}}
+        </button>
+    </div>
+</div>

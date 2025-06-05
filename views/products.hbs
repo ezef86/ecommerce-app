@@ -1,0 +1,22 @@
+{{#contentFor "pageTitle"}}Our Products{{/contentFor}}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1>Our Collection</h1>
+        {{!-- Potential search/filter bar here --}}
+    </div>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" id="product-list">
+        {{#if products.length}}
+            {{#each products}}
+            <div class="col">
+                {{> card product=this index=@index}}
+            </div>
+            {{/each}}
+        {{else}}
+            <div class="col-12">
+                <p class="text-center">No products found at the moment. Please check back later!</p>
+            </div>
+        {{/if}}
+    </div>
+</div>

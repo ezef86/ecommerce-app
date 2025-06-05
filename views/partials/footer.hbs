@@ -1,0 +1,17 @@
+<footer class="footer mt-auto py-3 bg-light text-center fixed-bottom">
+    <div class="container">
+        <span class="text-muted">&copy; {{currentYear}} Elegant Bookstore. All rights reserved.</span>
+    </div>
+</footer>
+
+{{currentYear}}
+<script>
+    // Simple helper to get current year for footer (can also be done in backend and passed)
+    document.addEventListener('DOMContentLoaded', function() {
+        const elements = document.querySelectorAll('.footer .container span');
+        if (elements.length > 0 && elements[0].innerHTML.includes('{{currentYear}}')) {
+            elements[0].innerHTML = elements[0].innerHTML.replace('{{currentYear}}', new Date().getFullYear());
+        }
+    });
+</script>
+{{currentYear}}

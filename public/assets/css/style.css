@@ -1,0 +1,49 @@
+/* public/assets/css/style.css */
+body {
+    font-family: 'Georgia', serif;
+    /* Example of an elegant font */
+    padding-top: 56px;
+    /* Adjust if navbar height changes, or use Bootstrap's fixed-top utilities carefully */
+    padding-bottom: 60px;
+    /* For fixed bottom footer */
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.product-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+    height: 200px;
+    /* Or use aspect-ratio in Bootstrap 5.1+ */
+    object-fit: cover;
+    /* Or 'contain' depending on your images */
+    border-bottom: 1px solid #eee;
+}
+
+.card-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.footer {
+    /* position: fixed; */
+    /* Uncomment if you want a truly fixed footer */
+    /* bottom: 0; */
+    /* width: 100%; */
+    background-color: #f8f9fa !important;
+    /* Bootstrap light bg */
+}
