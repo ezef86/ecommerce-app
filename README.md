@@ -1,7 +1,7 @@
 # Librería Online - Ecommerce
 
 ## Presentación
-Librería Online es una aplicación web de comercio electrónico desarrollada como proyecto integrador para la cursada de Full Stack. Permite a los usuarios explorar un catálogo de libros, agregarlos a un carrito de compras y simular el proceso de compra. El objetivo es ofrecer una experiencia moderna, intuitiva y adaptable a distintos dispositivos.
+Librería Online es una aplicación web de comercio electrónico desarrollada como proyecto integrador para la cursada de Fullstack. Permite a los usuarios explorar un catálogo de libros, agregarlos a un carrito de compras y simular el proceso de compra. El objetivo es ofrecer una experiencia moderna, intuitiva y adaptable a distintos dispositivos.
 
 ## Características principales
 - Catálogo de libros con imágenes, descripciones, precios y stock.
@@ -47,4 +47,4 @@ Librería Online es una aplicación web de comercio electrónico desarrollada co
 - Para cargar productos, se puede usar Postman o una herramienta similar con la API REST.
 
 ---
-Desarrollado por [Ezequiel Foressi] - Integrador II - Educación IT
+Desarrollado como desafío - Integrador II - Fullstack - Educación IT
