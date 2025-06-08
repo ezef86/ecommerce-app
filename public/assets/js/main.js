@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			cart.push({ ...product, quantity: 1 });
 		}
 		saveCart();
-		alert(`${product.productName} added to cart!`);
+		alert(`${product.productName} agregado al Carrito!`);
 	};
 
 	// Event listener para los botones "Agregar al carrito"
