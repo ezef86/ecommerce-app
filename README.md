@@ -42,6 +42,46 @@ Librería Online es una aplicación web de comercio electrónico desarrollada co
    ```
 5. Acceder a la app en [http://localhost:3000](http://localhost:3000)
 
+## Operaciones CRUD vía Postman
+
+### Productos
+| Operación      | Método HTTP | Endpoint                  | Descripción                                 | Body (JSON) requerido         |
+|----------------|-------------|---------------------------|---------------------------------------------|-------------------------------|
+| Crear producto | POST        | /api/productos            | Crea un nuevo producto                      | Sí (name, description, price, stock, etc.) |
+| Listar todos   | GET         | /api/productos            | Obtiene todos los productos                 | No                            |
+| Obtener uno    | GET         | /api/productos/:id        | Obtiene un producto por su ID               | No                            |
+| Actualizar     | PUT         | /api/productos/:id        | Actualiza un producto existente por su ID   | Sí (campos a modificar)       |
+| Eliminar       | DELETE      | /api/productos/:id        | Elimina un producto por su ID               | No                            |
+
+Ejemplo de body para POST/PUT:
+```json
+{
+  "name": "Nombre del libro",
+  "description": "Descripción",
+  "price": 10.99,
+  "stock": 5,
+  "category": "Categoría",
+  "imageUrl": "https://..."
+}
+```
+
+### Carrito
+| Operación                | Método HTTP | Endpoint                  | Descripción                                         | Body (JSON) requerido         |
+|--------------------------|-------------|---------------------------|-----------------------------------------------------|-------------------------------|
+| Crear carrito            | POST        | /api/carrito              | Crea un nuevo carrito vacío                         | No                            |
+| Obtener carrito por ID   | GET         | /api/carrito/:id          | Obtiene el carrito por su ID                        | No                            |
+| Agregar producto         | POST        | /api/carrito/:id/productos| Agrega un producto al carrito                       | Sí (productId, quantity)      |
+| Eliminar producto        | DELETE      | /api/carrito/:id/productos/:prodId | Elimina un producto del carrito           | No                            |
+| Vaciar carrito           | DELETE      | /api/carrito/:id          | Elimina todos los productos del carrito             | No                            |
+
+Ejemplo de body para agregar producto al carrito:
+```json
+{
+  "productId": "ID_DEL_PRODUCTO",
+  "quantity": 2
+}
+```
+
 ## Notas
 - El proyecto es de propósito educativo y puede ser extendido con autenticación, panel de administración, pagos, etc.
 - Para cargar productos, se puede usar Postman o una herramienta similar con la API REST.
