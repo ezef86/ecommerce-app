@@ -171,17 +171,17 @@ document.addEventListener("DOMContentLoaded", () => {
 				const result = await response.json();
 
 				if (response.ok) {
-					checkoutMessageDiv.innerHTML = `<div class="alert alert-success">Order placed successfully! Order ID: ${result.cart._id}</div>`;
+					checkoutMessageDiv.innerHTML = `<div class="alert alert-success">Orden realizada con éxito! ID de la orden: ${result.cart._id}</div>`;
 					cart = [];
 					saveCart();
 				} else {
-					checkoutMessageDiv.innerHTML = `<div class="alert alert-danger">Error placing order: ${
-						result.message || "Unknown error"
+					checkoutMessageDiv.innerHTML = `<div class="alert alert-danger">Error en la orden: ${
+						result.message || "Error desconocido"
 					}</div>`;
 				}
 			} catch (error) {
 				console.error("Checkout error:", error);
-				checkoutMessageDiv.innerHTML = `<div class="alert alert-danger">An error occurred while trying to place your order. Please try again.</div>`;
+				checkoutMessageDiv.innerHTML = `<div class="alert alert-danger">Ocurrió un error al realizar la orden, por favor inténtalo más tarde.</div>`;
 			}
 		});
 	}
