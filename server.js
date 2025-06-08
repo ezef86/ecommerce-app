@@ -13,29 +13,29 @@ const app = express();
 connectDB();
 
 // Middleware
-app.use(morgan("dev")); // HTTP request logger
-app.use(express.json()); // To parse JSON request bodies
-app.use(express.urlencoded({ extended: false })); // To parse URL-encoded request bodies
+app.use(morgan("dev"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false })); 
 
-// Serve static files (Bootstrap, custom CSS, JS, images)
+// Archivos estáticos (Bootstrap, custom CSS, JS, images)
 app.use(express.static(path.join(__dirname, "public")));
-// Make Bootstrap accessible from node_modules
+// Bootstrap accesible desde node_modules
 app.use(
 	"/bootstrap",
 	express.static(path.join(__dirname, "node_modules/bootstrap/dist"))
 );
 
-// View Engine Setup (Handlebars)
+// Handlebars
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "views"));
 hbs.registerPartials(path.join(__dirname, "views/partials"));
+hbs.registerPartials(path.join(__dirname, "views"));
 
-// Register a Handlebars helper for enumerated product titles
+// Handlebars helper
 hbs.registerHelper("productTitle", function (baseTitle, index) {
 	return `${baseTitle}_${index + 1}`;
 });
-
-// In server.js, where other hbs helpers are registered:
+// Helper para formatear precios
 hbs.registerHelper("eq", function (a, b) {
 	return a === b;
 });
@@ -45,25 +45,30 @@ const productApiRoutes = require("./routes/productRoutes");
 const cartApiRoutes = require("./routes/cartRoutes");
 const viewRoutes = require("./routes/viewRoutes"); // For rendering pages
 
+// Cargar las rutas de la API y las vistas
+// api/productos para cargar productos a la base de datos mediante Postman
 app.use("/api/productos", productApiRoutes);
+// api/carrito para manejar el carrito de compras
 app.use("/api/carrito", cartApiRoutes);
-app.use("/", viewRoutes); // Mount view routes at the root
+// Ruta para las vistas
+app.use("/", viewRoutes);
 
-// Basic Error Handling (can be expanded)
+// Manejo de errores
 app.use((err, req, res, next) => {
 	console.error(err.stack);
-	res.status(500).send("Something broke!");
+	res.status(500).send("Algo salió mal...");
 });
 
-// Start the server
+// Iniciar el servidor
 const PORT = process.env.PORT || 3000;
-// In server.js, before app.listen
-// Make current year available to all templates
+// Antes de app.listen, establecer una variable local con el año actual para todas las vistas
 app.use((req, res, next) => {
 	res.locals.currentYear = new Date().getFullYear();
 	next();
 });
 app.listen(PORT, () => {
-	console.log(`Server running on port ${PORT}`);
-	console.log(`Connected to MongoDB via: ${process.env.MONGO_CONNECTION_TYPE}`);
+	console.log(`Servidor iniciado en: http://localhost:${PORT}`);
+	console.log(
+		`Conectado a MongoDB a través de: ${process.env.MONGO_CONNECTION_TYPE}`
+	);
 });

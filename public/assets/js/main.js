@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const saveCart = () => {
 		localStorage.setItem("shoppingCart", JSON.stringify(cart));
 		updateCartCount();
-		renderCartPageItems(); // Update cart page if currently viewing it
+		renderCartPageItems();
 	};
 
 	const addToCart = (product) => {
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		alert(`${product.productName} added to cart!`);
 	};
 
-	// Event listener for "Add to Cart" buttons (on products page or cards)
+	// Event listener para los botones "Agregar al carrito"
 	document.querySelectorAll(".add-to-cart-btn").forEach((button) => {
 		button.addEventListener("click", (event) => {
 			const card = event.target.closest(".product-card");
@@ -40,12 +40,12 @@ document.addEventListener("DOMContentLoaded", () => {
 			const productId = card.dataset.productId;
 			const productName = card.dataset.productName;
 			const productPrice = parseFloat(card.dataset.productPrice);
-			const productImage = card.dataset.productImage; // Get image URL
+			const productImage = card.dataset.productImage;
 
 			if (productId && productName && !isNaN(productPrice)) {
 				addToCart({ productId, productName, productPrice, productImage });
 			} else {
-				console.error("Product data missing from card:", card.dataset);
+				console.error("Datos del libro nulos:", card.dataset);
 			}
 		});
 	});
@@ -59,9 +59,9 @@ document.addEventListener("DOMContentLoaded", () => {
 	const checkoutMessageDiv = document.getElementById("checkout-message");
 
 	const renderCartPageItems = () => {
-		if (!cartItemsContainer || !cartTotalElement) return; // Only run on cart page
+		if (!cartItemsContainer || !cartTotalElement) return;
 
-		cartItemsContainer.innerHTML = ""; // Clear existing items
+		cartItemsContainer.innerHTML = "";
 		let total = 0;
 
 		if (cart.length === 0) {
@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		cartTotalElement.textContent = total.toFixed(2);
 	};
 
-	// Event delegation for cart item buttons
+	// Eventos para los botones de actualización y eliminación de artículos en el carrito
 	if (cartItemsContainer) {
 		cartItemsContainer.addEventListener("click", (event) => {
 			const target = event.target.closest("button");
@@ -123,18 +123,19 @@ document.addEventListener("DOMContentLoaded", () => {
 				const change = parseInt(target.dataset.change);
 				cart[index].quantity += change;
 				if (cart[index].quantity <= 0) {
-					cart.splice(index, 1); // Remove if quantity is 0 or less
+					cart.splice(index, 1);
 				}
 				saveCart();
 			}
 		});
 	}
 
-	// Checkout Logic
+	// Lógica de pago
+	// Solo se ejecuta si estamos en la página del carrito
 	if (checkoutForm) {
 		checkoutForm.addEventListener("submit", async (event) => {
 			event.preventDefault();
-			checkoutMessageDiv.innerHTML = ""; // Clear previous messages
+			checkoutMessageDiv.innerHTML = "";
 
 			if (cart.length === 0) {
 				checkoutMessageDiv.innerHTML =
@@ -149,7 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				items: cart.map((item) => ({
 					productId: item.productId,
 					quantity: item.quantity,
-					priceAtPurchase: item.productPrice, // Storing price at time of adding to cart
+					priceAtPurchase: item.productPrice,
 				})),
 				totalAmount: parseFloat(cartTotalElement.textContent),
 				customerInfo: {
@@ -171,10 +172,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 				if (response.ok) {
 					checkoutMessageDiv.innerHTML = `<div class="alert alert-success">Order placed successfully! Order ID: ${result.cart._id}</div>`;
-					cart = []; // Empty the cart
-					saveCart(); // Update localStorage and UI
-					// Optionally redirect to an order confirmation page
-					// window.location.href = `/order-confirmation/${result.cart._id}`;
+					cart = [];
+					saveCart();
 				} else {
 					checkoutMessageDiv.innerHTML = `<div class="alert alert-danger">Error placing order: ${
 						result.message || "Unknown error"
@@ -187,7 +186,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	}
 
-	// Initial cart rendering on page load
+	// Carrito de compras al cargar la página
 	updateCartCount();
-	renderCartPageItems(); // This will correctly render the cart if on the cart page
+	renderCartPageItems();
 });

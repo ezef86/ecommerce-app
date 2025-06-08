@@ -1,20 +1,18 @@
-{{#contentFor "pageTitle"}}Your Shopping Cart{{/contentFor}}
-
-<div class="container mt-4">
-    <h1>Your Shopping Cart</h1>
+<div class="container mt-4 products-header">
+    <h1>Tu Carrito de Compras</h1>
 
     <div id="cart-items-container">
-        {{!-- Cart items will be dynamically inserted here by main.js --}}
-        <p class="text-center" id="empty-cart-message">Your cart is empty. <a href="/products">Start shopping!</a></p>
+        {{!-- Los items del carrito serán ingresados de manera dinámica por main.js --}}
+        <p class="text-center" id="empty-cart-message">Tu carrito está vacío <a href="/products">Explorar libros</a></p>
     </div>
 
     <div id="cart-summary" class="mt-4" style="display: none;">
         <h3>Total: $<span id="cart-total">0.00</span></h3>
         <hr>
-        <h4>Customer Information (Optional)</h4>
+        <h4>Información del Cliente</h4>
         <form id="checkout-form">
             <div class="mb-3">
-                <label for="customerName" class="form-label">Name</label>
+                <label for="customerName" class="form-label">Nombre</label>
                 <input type="text" class="form-control" id="customerName" placeholder="Your Name">
             </div>
             <div class="mb-3">
@@ -22,7 +20,7 @@
                 <input type="email" class="form-control" id="customerEmail" placeholder="your.email@example.com">
             </div>
             <button type="submit" class="btn btn-success btn-lg" id="checkout-button">
-                <i class="bi bi-bag-check-fill"></i> Finalize Purchase
+                <i class="bi bi-bag-check-fill"></i> Finalizar Compra
             </button>
         </form>
     </div>

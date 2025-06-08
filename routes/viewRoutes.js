@@ -13,12 +13,12 @@ router.get("/products", async (req, res) => {
 	try {
 		const products = await Product.find().lean(); // .lean() for plain JS objects, faster for HBS
 		res.render("products", {
-			pageTitle: "Our Products",
+			pageTitle: "Nuestros Productos",
 			products: products,
 		});
 	} catch (err) {
 		console.error("Error fetching products for view:", err);
-		res.status(500).render("error", { message: "Could not load products." }); // Create an error.hbs if you want
+		res.status(500).render("error", { message: "Could not load products." });
 	}
 });
 

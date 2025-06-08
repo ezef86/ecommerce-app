@@ -2,6 +2,10 @@
 const mongoose = require("mongoose");
 
 const productSchema = new mongoose.Schema({
+	isbn: {
+		type: String,
+		trim: true,
+	},
 	name: {
 		type: String,
 		required: [true, "Product name is required"],
@@ -18,16 +22,17 @@ const productSchema = new mongoose.Schema({
 	},
 	imageUrl: {
 		type: String,
-		default: "/assets/images/default-product.png", // Default image if not provided
+		default:
+			"https://dummyimage.com/600x400/000/fff.png&text=Imagen+no+disponible",
 	},
 	stock: {
 		type: Number,
-		required: [true, "Stock quantity is required"],
-		min: [0, "Stock cannot be negative"],
+		required: [true, "Cantidad de stock es requerida"],
+		min: [0, "El stock no puede ser negativo"],
 		default: 0,
 	},
 	category: {
-		// Optional, but good for e-commerce
+		// Opcional
 		type: String,
 		trim: true,
 	},
