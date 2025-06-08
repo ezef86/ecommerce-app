@@ -18,7 +18,12 @@ router.get("/products", async (req, res) => {
 		});
 	} catch (err) {
 		console.error("Error fetching products for view:", err);
-		res.status(500).render("error", { message: "Could not load products." });
+		res
+			.status(500)
+			.render("error", {
+				pageTitle: "Error",
+				message: "Could not load products.",
+			});
 	}
 });
 
